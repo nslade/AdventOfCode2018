@@ -1,5 +1,7 @@
 package day1;
 
+import common.fileInput;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
@@ -65,7 +67,7 @@ public class part2 {
         int startingFrequency = 0;
         Path relativePath = Paths.get("inputs/day1.txt");
         Path absolutePath = relativePath.toAbsolutePath();
-        List<Integer> inputValues = readInput(absolutePath.toString());
+        List<Integer> inputValues = fileInput.readInts(absolutePath.toString());
         if (inputValues == null) {
             return;
         }
