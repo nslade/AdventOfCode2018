@@ -1,5 +1,7 @@
 package day1;
 
+import common.fileInput;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
@@ -18,33 +20,12 @@ public class part1 {
         return currentFreq;
     }
 
-    public static List<Integer> readInput(String filepath) {
-
-        List<Integer> inputValues = new ArrayList<>();
-
-        try {
-            File file = new File(filepath);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNext()) {
-                if (scanner.hasNextInt()) {
-                    inputValues.add(scanner.nextInt());
-                } else {
-                    scanner.next();
-                }
-            }
-            return inputValues;
-        } catch(FileNotFoundException fnfe) {
-            System.out.println("File not found");
-        }
-        return null;
-    }
-
     public static void main(String []args)
     {
         int startingFrequency = 0;
-        Path relativePath = Paths.get("inputs/day1_test4.txt");
+        Path relativePath = Paths.get("inputs/day1.txt");
         Path absolutePath = relativePath.toAbsolutePath();
-        List<Integer> inputValues = readInput(absolutePath.toString());
+        List<Integer> inputValues = fileInput.readInts(absolutePath.toString());
         if (inputValues == null) {
             return;
         }
