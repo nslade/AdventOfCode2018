@@ -29,7 +29,7 @@ public class fileInput {
         return null;
     }
 
-    public static List<String> readStrings(String filepath) {
+    public static List<String> readLines(String filepath) {
 
         List<String> inputValues = new ArrayList<>();
 
