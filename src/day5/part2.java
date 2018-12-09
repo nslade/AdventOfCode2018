@@ -41,6 +41,24 @@ public class part2 {
         return units;
     }
 
+    public static int findSmallestPolymer(int fullPolymerSize, List<Character> units, String fullPolymerString) {
+        int smallestPolymer = fullPolymerSize;
+        for (int i = 0; i < units.size(); i++) {
+            String newPolymerString = fullPolymerString;
+            newPolymerString = newPolymerString.replace(units.get(i).toString(), "");
+            newPolymerString = newPolymerString.replace(units.get(i).toString().toUpperCase(), "");
+            List<Character> polymer = new ArrayList<>();
+            for (int j = 0; j < newPolymerString.length(); j++) {
+                polymer.add(newPolymerString.charAt(j));
+            }
+            polymer = reactPolymer(polymer);
+            if (polymer.size() < smallestPolymer) {
+                smallestPolymer = polymer.size();
+            }
+        }
+        return smallestPolymer;
+    }
+
     public static void main(String []args)
     {
         Path relativePath = Paths.get("inputs/day5.txt");
@@ -57,23 +75,8 @@ public class part2 {
         }
         fullPolymer = reactPolymer(fullPolymer);
 
-        int smallestPolymer = fullPolymer.size();
-
         List<Character> units = findUnits(fullPolymerString);
-
-        for (int i = 0; i < units.size(); i++) {
-            String newPolymerString = fullPolymerString;
-            newPolymerString = newPolymerString.replace(units.get(i).toString(), "");
-            newPolymerString = newPolymerString.replace(units.get(i).toString().toUpperCase(), "");
-            List<Character> polymer = new ArrayList<>();
-            for (int j = 0; j < newPolymerString.length(); j++) {
-                polymer.add(newPolymerString.charAt(j));
-            }
-            polymer = reactPolymer(polymer);
-            if (polymer.size() < smallestPolymer) {
-                smallestPolymer = polymer.size();
-            }
-        }
+        int smallestPolymer = findSmallestPolymer(fullPolymer.size(), units, fullPolymerString);
 
         System.out.println(smallestPolymer);
 
