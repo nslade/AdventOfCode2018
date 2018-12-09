@@ -102,7 +102,7 @@ public class part2 {
 
         Path relativePath = Paths.get("inputs/day2.txt");
         Path absolutePath = relativePath.toAbsolutePath();
-        List<String> inputValues = fileInput.readStrings(absolutePath.toString());
+        List<String> inputValues = fileInput.readLines(absolutePath.toString());
         if (inputValues == null) {
             System.out.println("Error reading input");
             return;
